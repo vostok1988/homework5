@@ -1,24 +1,29 @@
 fun main() {
+    val post = Post(
+        1, 1, 1, 1, 2004,
+        "Hello", 1, 1, false,
+        Comments(1, true, true, true, true),
+        Copyright(1, "", "name", "type"),
+        Likes(1, true, true, true),
+        Reposts(1, true), View(1), "post", 1,
+        PostSource("", "", "", ""),
+        Geo(
+            "", "", Place(
+                1, "", 12, 17,
+                1, "", 1, 2, 8, 5, 1, ""
+            )
+        ), copyHistory = null,
+        Donut(
+            true, 480, 4,
+            false, ""
+        ),
+        true, true, true, false,
+        true, false, 1, attachments = null
+    )
 
-    val comment = Comments(1, true, true, true, true)
-    val like = Likes(1,true, true, true)
-    val repost = Reposts(1,true)
-
-
-    var post1 = Post(0, 1, 2, 1, 1648204060, "Some text1",
-        1, 1,1, comment, like, repost,
-        " ", 1,true, true, true, true,
-        false)
-
-    var post2 = Post(0, 1, 2, 1, 1648204060, "Some text2",
-        1, 1,1, comment, like, repost,
-        " ", 1,true, true, true, true,
-        false)
-
-    var post3 = Post(1, 10, 999, 999, 999, "Some text3",
-        999, 999,999, comment, like, repost,
-        " ", 1,true, true, true, true,
-        false)
-
+    val firstAttachment = post.attachments?.get(0)
+    if (firstAttachment is AudioAttachment) {
+        println(firstAttachment)
+    }
 
 }

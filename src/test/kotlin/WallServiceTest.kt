@@ -1,109 +1,189 @@
-import org.junit.Assert.*
+import org.junit.Test
 
+import org.junit.Assert.*
 
 class WallServiceTest {
 
-    @org.junit.Test
-    fun add() {
-        val examplePost = Post(
-            0, 1, 2, 1, 1648204060, "Some text",
-            1, 1, 1, Comments(1, true, true, true, true),
-            Likes(1, true, true, true),
-            Reposts(1, true),  " ", 1, true, true, true, true,
-            false
+    @Test
+    fun should_add() {
+        val service = WallService
+
+        val result = service.add(
+            Post(
+                1, 1, 1, 1, 2004,
+                "Hello", 1, 1, false,
+                Comments(1, true, true, true, true),
+                Copyright(1, "", "name", "type"),
+                Likes(1, true, true, true),
+                Reposts(1, true), View(1), "post", 1,
+                PostSource("", "", "", ""),
+                Geo(
+                    "", "", Place(
+                        1, "", 12, 17,
+                        1, "", 1, 2, 8, 5, 1, ""
+                    )
+                ), copyHistory = null,
+                Donut(
+                    true, 480, 4,
+                    false, ""
+                ),
+                true, true, true, false,
+                true, false, 1
+            )
         )
-        val expected = 7
 
-        val result = WallService.add(examplePost).id
-
-        assertEquals(expected, result)
+        assertNotEquals(0, result.id)
     }
 
-    @org.junit.Test
-    fun updateExistingTrue() {
-        WallService.add(
+    @Test
+    fun update_existing_true() {
+        val service = WallService
+        service.add(
             Post(
-                0, 1, 2, 1, 1648204060, "Some text",
-                1, 1, 1, Comments(1, true, true, true, true),
+                1, 1, 1, 1, 2004,
+                "Hello", 1, 1, false,
+                Comments(1, true, true, true, true),
+                Copyright(1, "", "name", "type"),
                 Likes(1, true, true, true),
-                Reposts(1, true),  " ", 1, true, true, true, true,
-                false
+                Reposts(1, true), View(1), "post", 1,
+                PostSource("", "", "", ""),
+                Geo(
+                    "", "", Place(
+                        1, "", 12, 17,
+                        1, "", 1, 2, 8, 5, 1, ""
+                    )
+                ), copyHistory = null,
+                Donut(
+                    true, 480, 4,
+                    false, ""
+                ),
+                true, true, true, false,
+                true, false, 1
             )
         )
-        WallService.add(
+        service.add(
             Post(
-                0, 1, 2, 1, 1648204060, "Some text",
-                1, 1, 1, Comments(1, true, true, true, true),
+                1, 1, 1, 1, 2004,
+                "Hello", 1, 1, false,
+                Comments(1, true, true, true, true),
+                Copyright(1, "", "name", "type"),
                 Likes(1, true, true, true),
-                Reposts(1, true), " ", 1, true, true, true, true,
-                false
-            )
-        )
-        WallService.add(
-            Post(
-                0, 1, 2, 1, 1648204060, "Some text",
-                1, 1, 1, Comments(1, true, true, true, true),
-                Likes(1, true, true, true),
-                Reposts(1, true),  " ", 1, true, true, true, true,
-                false
+                Reposts(1, true), View(1), "post", 1,
+                PostSource("", "", "", ""),
+                Geo(
+                    "", "", Place(
+                        1, "", 12, 17,
+                        1, "", 1, 2, 8, 5, 1, ""
+                    )
+                ), copyHistory = null,
+                Donut(
+                    true, 480, 4,
+                    false, ""
+                ),
+                true, true, true, false,
+                true, false, 1
             )
         )
 
         val update = Post(
-            1, 1, 2, 1, 1648204060, "Some text1",
-            1, 1, 1, Comments(1, true, true, true, true),
+            1, 1, 1, 1, 2104,
+            "Hello", 1, 1, false,
+            Comments(1, true, true, true, true),
+            Copyright(1, "", "name", "type"),
             Likes(1, true, true, true),
-            Reposts(1, true),  " ", 1, true, true, true, true,
-            false
+            Reposts(1, true), View(1), "post", 1,
+            PostSource("", "", "", ""),
+            Geo(
+                "", "", Place(
+                    1, "", 12, 17,
+                    1, "", 1, 2, 8, 5, 1, ""
+                )
+            ), copyHistory = null,
+            Donut(
+                true, 480, 4,
+                false, ""
+            ),
+            true, true, true, false,
+            true, false, 1
         )
 
-        val result = WallService.update(update)
-
+        val result = service.update(update)
         assertTrue(result)
-
     }
 
-    @org.junit.Test
-    fun updateExistingFalse() {
-        WallService.add(
+    @Test
+    fun update_existing_false() {
+        val service = WallService
+        service.add(
             Post(
-                0, 1, 2, 1, 1648204060, "Some text",
-                1, 1, 1, Comments(1, true, true, true, true),
+                1, 1, 1, 1, 2004,
+                "Hello", 1, 1, false,
+                Comments(1, true, true, true, true),
+                Copyright(1, "", "name", "type"),
                 Likes(1, true, true, true),
-                Reposts(1, true), " ", 1, true, true, true, true,
-                false
+                Reposts(1, true), View(1), "post", 1,
+                PostSource("", "", "", ""),
+                Geo(
+                    "", "", Place(
+                        1, "", 12, 17,
+                        1, "", 1, 2, 8, 5, 1, ""
+                    )
+                ), copyHistory = null,
+                Donut(
+                    true, 480, 4,
+                    false, ""
+                ),
+                true, true, true, false,
+                true, false, 1
             )
         )
-        WallService.add(
+        service.add(
             Post(
-                0, 1, 2, 1, 1648204060, "Some text",
-                1, 1, 1, Comments(1, true, true, true, true),
-               Likes(1, true, true, true),
-                Reposts(1, true)," ", 1, true, true, true, true,
-                false
-            )
-        )
-        WallService.add(
-            Post(
-                0, 1, 2, 1, 1648204060, "Some text",
-                1, 1, 1, Comments(1, true, true, true, true),
-                 Likes(1, true, true, true),
-                Reposts(1, true), " ", 1, true, true, true, true,
-                false
+                1, 1, 1, 1, 2004,
+                "Hello", 1, 1, false,
+                Comments(1, true, true, true, true),
+                Copyright(1, "", "name", "type"),
+                Likes(1, true, true, true),
+                Reposts(1, true), View(1), "post", 1,
+                PostSource("", "", "", ""),
+                Geo(
+                    "", "", Place(
+                        1, "", 12, 17,
+                        1, "", 1, 2, 8, 5, 1, ""
+                    )
+                ), copyHistory = null,
+                Donut(
+                    true, 480, 4,
+                    false, ""
+                ),
+                true, true, true, false,
+                true, false, 1
             )
         )
 
         val update = Post(
-            5, 1, 2, 1, 1648204060, "Some text1",
-            1, 1, 1, Comments(1, true, true, true, true),
+            2, 1, 1, 1, 2104,
+            "Hello", 1, 1, false,
+            Comments(1, true, true, true, true),
+            Copyright(1, "", "name", "type"),
             Likes(1, true, true, true),
-            Reposts(1, true)," ", 1, true, true, true, true,
-            false
+            Reposts(1, true), View(1), "post", 1,
+            PostSource("", "", "", ""),
+            Geo(
+                "", "", Place(
+                    1, "", 12, 17,
+                    1, "", 1, 2, 8, 5, 1, ""
+                )
+            ), copyHistory = null,
+            Donut(
+                true, 480, 4,
+                false, ""
+            ),
+            true, true, true, false,
+            true, false, 1
         )
 
-        val result = WallService.update(update)
-
+        val result = service.update(update)
         assertFalse(result)
-
     }
 }
